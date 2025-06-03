@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>UK WEB DEVELOPMENT</title>
+  <link rel="icon" href="assets/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #121212;
+      color: #f9f9f9;
+    }
+
+    /* Navbar */
+    .nav-logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #fff;
+      border: 2px solid #00c6ff;
+    }
+
+    nav {
+      background: #1e1e1e;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    nav .logo {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #00c6ff;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      transition: max-height 0.3s;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    nav ul li a:hover {
+      color: #00c6ff;
+      background: rgba(0, 198, 255, 0.2);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .nav-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #00c6ff;
+      border-radius: 2px;
+      display: block;
+    }
+
+    section {
+      padding: 80px 40px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #00c6ff;
+      border-left: 5px solid #00c6ff;
+      padding-left: 10px;
+    }
+
+    /* About Section */
+    .about-block {
+      display: flex;
+      gap: 30px;
+      background: #1e1e1e;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      margin-bottom: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .about-image {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: url('https://via.placeholder.com/140') center/cover no-repeat;
+      flex-shrink: 0;
+      border: 4px solid #00c6ff;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h3 {
+      margin-bottom: 10px;
+      font-size: 1.6rem;
+      color: #00c6ff;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+    }
+
+    .grid div {
+      background: #1e1e1e;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .grid div:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Pricing Cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .pricing-card {
+      background: #1e1e1e;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 198, 255, 0.3);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 198, 255, 0.5);
+    }
+
+    .pricing-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #00c6ff;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .pricing-price {
+      font-size: 2.5rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 15px;
+      color: #00a3d9;
+    }
+
+    .pricing-details {
+      list-style: none;
+      margin-bottom: 25px;
+      padding-left: 0;
+      color: #b0b0b0;
+      font-size: 1rem;
+    }
+
+    .lang-card {
+      color: #f9f9f9;
+      transition: color 0.3s, background 0.3s;
+      cursor: pointer;
+    }
+
+    .lang-card:hover {
+      color: #00c6ff;
+      background: black
+    }
+
+    .btn-primary {
+      background-color: #00c6ff;
+      color: #1e1e1e;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: #fff;
+      color: #000000;
+    }
+
+    .pricing-details li {
+      margin-bottom: 8px;
+    }
+
+    .btn-primary {
+      background-color: #00c6ff;
+      color: #1e1e1e;
+      border: none;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: #00a3d9;
+      outline: none;
+    }
+
+    /* Contact Section */
+    .contact {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #00c6ff;
+    }
+
+    input,
+    textarea {
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: 1.5px solid #00c6ff;
+      background-color: #1e1e1e;
+      color: #f9f9f9;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #00a3d9;
+      box-shadow: 0 0 8px #00a3d9aa;
+    }
+
+    button {
+      background-color: #00c6ff;
+      color: #1e1e1e;
+      border: none;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      margin-top: 10px;
+    }
+
+    button:hover,
+    button:focus {
+      background-color: #00a3d9;
+      outline: none;
+    }
+
+    .error-msg {
+      color: #ff6666;
+      font-size: 0.85rem;
+      min-height: 20px;
+    }
+
+    footer {
+      text-align: center;
+      background: #1e1e1e;
+      color: white;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .project-card {
+      background: #1e1e1e;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0, 198, 255, 0.10);
+      padding: 22px 18px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 8px 32px rgba(0, 198, 255, 0.18);
+    }
+
+    .project-card h3 {
+      margin: 10px 0 8px 0;
+      color: #00c6ff;
+      font-size: 1.25rem;
+    }
+
+    .project-card p {
+      flex: 1;
+      font-size: 1rem;
+      color: #b0b0b0;
+      margin-bottom: 16px;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1100px) {
+      section {
+        padding: 60px 20px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .pricing-card {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .project-card {
+        padding: 14px 8px 14px 8px;
+      }
+
+      .about-block {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 10px;
+      }
+
+      .about-text {
+        text-align: center;
+      }
+
+      nav {
+        padding: 15px 20px;
+      }
+
+      section {
+        padding: 40px 10px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 8px;
+      }
+
+      .nav-logo-container {
+        margin-bottom: 8px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        background: #1e1e1e;
+        border-radius: 0 0 10px 10px;
+      }
+
+      nav ul.open {
+        max-height: 500px;
+        padding-bottom: 10px;
+      }
+
+      nav ul li {
+        width: 100%;
+        text-align: left;
+        padding: 8px 0 8px 10px;
+      }
+
+      .nav-toggle {
+        display: flex;
+        margin-left: auto;
+        margin-right: 10px;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+        padding-left: 6px;
+      }
+
+      .about-image {
+        width: 90px;
+        height: 90px;
+      }
+
+      .pricing-card {
+        padding: 18px 8px;
+      }
+
+      .pricing-title {
+        font-size: 1.3rem;
+      }
+
+      .pricing-price {
+        font-size: 2rem;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .contact {
+        padding: 0 4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-logo-container">
+      <img src="./assets/logo.png" alt="Logo" class="nav-logo-img" style="vertical-align:middle;" />
+      <span class="logo" style="vertical-align:middle; display:inline-block;">UK WEB DEVELOPMENT</span>
+    </div>
+    <div class="nav-toggle" id="nav-toggle" aria-label="Open navigation" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul id="nav-menu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#languages">Languages</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="tamplate.html">Templates</a></li>
+      <li><a href="#pricing">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About us</h2>
+    <div class="about-block">
+      <div class="about-image" style="background-image: url(./assets/UDIT.jpg);"></div>
+      <div class="about-text">
+        <h3>UDIT MISTRY R.</h3>
+        <p>
+          UDIT is a passionate web developer with 2+ years of experience in building modern, responsive websites and web
+          applications. He specializes in front-end technologies and loves turning ideas into interactive digital
+          experiences.
+        </p>
+      </div>
+    </div>
+    <div class="about-block">
+      <div class="about-text">
+        <h3>KRUNAL VARMA M.</h3>
+        <p>
+          KRUNAL is a passionate web developer with 2+ years of experience in building modern, responsive websites and
+          web
+          applications. He specializes in front-end technologies and loves turning ideas into interactive digital
+          experiences.
+        </p>
+      </div>
+      <div class="about-image" style="background-image: url(./assets/KRUNAL.jpg);"></div>
+    </div>
+  </section>
+
+  <!-- Languages -->
+  <section id="languages">
+    <h2>Languages</h2>
+    <div class="grid">
+      <div class="lang-card">HTML</div>
+      <div class="lang-card">CSS</div>
+      <div class="lang-card">JavaScript</div>
+      <div class="lang-card">Python</div>
+      <div class="lang-card">TypeScript</div>
+      <div class="lang-card">React</div>
+      <div class="lang-card">Node.js</div>
+      <div class="lang-card">PHP</div>
+      <div class="lang-card">MySQL</div>
+      <div class="lang-card">MongoDB</div>
+      <div class="lang-card">Express</div>
+      <div class="lang-card">Bootstrap</div>
+      <div class="lang-card">Git</div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid projects-grid">
+      <div class="project-card">
+        <img src="./assets/p1.png" alt="Portfolio Website Screenshot"
+          style="width:100%;border-radius:8px;margin-bottom:15px;">
+        <h3>INDIAN RECIPE</h3>
+        <p>A modern food recipe website featuring step-by-step
+          instructions, ingredient search, and user-friendly design.</p>
+        <a href="https://indianrecipe.vercel.app/index.html" class="btn-primary" target="_blank" rel="noopener">View
+          Project</a>
+      </div>
+      <div class="project-card">
+        <img src="./assets/p2.png" alt="E-Commerce Store Screenshot"
+          style="width:100%;border-radius:8px;margin-bottom:15px;">
+        <h3>catch the Insect</h3>
+        <p>A fun interactive game where players try to catch insects as quickly as possible, improving reflexes and
+          hand-eye coordination.</p>
+        <a href="https://catchinsect.vercel.app/" class="btn-primary" target="_blank" rel="noopener">View Project</a>
+      </div>
+      <div class="project-card">
+        <img src="./assets/p3.jpg" alt="Blog Platform Screenshot"
+          style="width:100%;border-radius:8px;margin-bottom:15px;">
+        <h3>Security Service Provider</h3>
+        <p>A professional website for a security service provider, featuring service details, contact options, and a
+          modern responsive design.</p>
+        <a href="https://srigel.vercel.app/" class="btn-primary" target="_blank" rel="noopener">View Project</a>
+      </div>
+      <div class="project-card">
+        <img src="./assets/p4.jpg" alt="Weather App Screenshot"
+          style="width:100%;border-radius:8px;margin-bottom:15px;">
+        <h3>microgreens Selling Platform</h3>
+        <p>A platform for selling fresh microgreens online with seamless
+          ordering features..</p>
+        <a href="https://microgreensbuy.vercel.app/" class="btn-primary" target="_blank" rel="noopener">View Project</a>
+      </div>
+      <div class="project-card">
+        <img src="./assets/p5.png" alt="Weather App Screenshot"
+          style="width:100%;border-radius:8px;margin-bottom:15px;">
+        <h3>Resturent Website</h3>
+        <p>A modern restaurant website with menu display, online reservation, and a visually appealing, responsive
+          layout.</p>
+        <a href="https://resturentwebsite.vercel.app/" class="btn-primary" target="_blank" rel="noopener">View
+          Project</a>
+      </div>
+    </div>
+  </section>
+  <!-- Templates Section Link -->
+  <section id="templates">
+    <h2>Templates</h2>
+    <p>
+      Explore our ready-made website templates for faster project launches.
+      <a href="tamplate.html" class="btn-primary" style="display:inline-block;margin-top:15px;">View Templates</a>
+    </p>
+  </section>
+  <br>
+
+  <!-- Pricing Section -->
+  <section id="pricing">
+    <h2>Services & Pricing</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-title">Basic Website</div>
+        <div class="pricing-price">₹8000</div>
+        <ul class="pricing-details">
+          <li>1-3 Pages</li>
+          <li>Responsive Design</li>
+          <li>Contact Form</li>
+          <li>Basic SEO</li>
+          <li>Email Support</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-title">Business Website</div>
+        <div class="pricing-price">₹15000</div>
+        <ul class="pricing-details">
+          <li>Up to 7 Pages</li>
+          <li>Custom Design</li>
+          <li>Blog/News Section</li>
+          <li>SEO Optimization</li>
+          <li>1 Month Free Support</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-title">E-Commerce</div>
+        <div class="pricing-price">₹40000</div>
+        <ul class="pricing-details">
+          <li>Product Catalog</li>
+          <li>Shopping Cart</li>
+          <li>Payment Integration</li>
+          <li>Admin Dashboard</li>
+          <li>3 Months Free Support</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Get Started</a>
+      </div>
+    </div>
+  </section>
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <form action="https://api.web3forms.com/submit" method="POST" id="contact-form" novalidate>
+
+      <input type="hidden" name="access_key" value="e344e122-8545-42ac-9932-116f9bfadfb4">
+
+      <label for="name">Name<span style="color: #ff6666;">*</span></label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required minlength="2" />
+      <div class="error-msg" id="error-name" aria-live="polite"></div>
+
+      <label for="email">Email<span style="color: #ff6666;">*</span></label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+      <div class="error-msg" id="error-email" aria-live="polite"></div>
+
+      <label for="message">Message<span style="color: #ff6666;">*</span></label>
+      <textarea id="message" name="message" rows="5" placeholder="Your message here..." required
+        minlength="10"></textarea>
+      <div class="error-msg" id="error-message" aria-live="polite"></div>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 UK WEB DEVELOPER. All rights reserved. [BY. MISTRY UDIT R. & VARMA KRUNAL M.]
+  </footer>
+<script>
+  // Hamburger menu for mobile
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+  });
+  navToggle.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      navMenu.classList.toggle('open');
+    }
+  });
+
+  
+</script>
+</body>
+
+</html>
